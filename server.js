@@ -2,6 +2,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 const express = require("express");
 const mongoose = require("mongoose");
+const { MongoClient, ServerApiVersion } = require("mongodb");
 
 const cors = require("cors");
 
@@ -22,9 +23,11 @@ app.use("/api/public", publicRoutes);
 
 // DB connect
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGO_URI, {
+    serverSelectionTimeoutMS: 5000,
+  })
   .then(() => console.log("MongoDB Connected"))
-  .catch((err) => console.log(err));
+  .catch((err) => console.log("Mongo Error:", err));
 
 // Server
 app.listen(process.env.PORT, () => {
