@@ -2,7 +2,7 @@ const express = require("express");
 const {
   generateContent,
   getHistory,
-} = require("../controllers/contentController");
+} = require("../controllers/ContentController");
 const auth = require("../middleware/auth");
 const rateLimit = require("express-rate-limit");
 const router = express.Router();
@@ -18,7 +18,7 @@ const aiLimiter = rateLimit({
   },
 });
 
-const { createShare } = require("../controllers/shareController");
+const { createShare } = require("../controllers/ShareController");
 
 router.post("/share/:id", auth, createShare);
 router.post("/generate", auth, aiLimiter, generateContent);
