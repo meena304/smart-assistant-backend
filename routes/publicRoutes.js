@@ -1,5 +1,5 @@
 const express = require("express");
-const { getSharedContent } = require("../controllers/shareController");
+const { getSharedContent } = require("../controllers/ShareController");
 
 const router = express.Router();
 
